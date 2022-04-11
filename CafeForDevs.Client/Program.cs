@@ -8,7 +8,7 @@ namespace CafeForDevs.Client
         static void Main(string[] args)
         {
             var httpClient = new HttpClient();
-            var baseCafeUri = new Uri("http://lockalhost:37820");
+            var baseCafeUri = new Uri("http://localhost:37820");
             var cafeHttpClient = new CafeHttpClient(httpClient, baseCafeUri);
             
             var application = new Client(cafeHttpClient);

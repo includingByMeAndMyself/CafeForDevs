@@ -1,7 +1,7 @@
-﻿namespace CafeForDevs.Client
+﻿namespace CafeForDevs.Models
 {
 
-    public class OrderPosition
+    public class OrderPositionDto
     {
         public string Name { get; set; }
 

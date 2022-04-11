@@ -1,6 +1,7 @@
-﻿namespace CafeForDevs.Client
+﻿
+namespace CafeForDevs.Server.Application
 {
-    public class MenuItem 
+    internal class MenuItem
     {
         public int Id { get; set; }
 
@@ -8,6 +9,4 @@
 
         public decimal Price { get; set; }
     }
-
-
 }

@@ -1,10 +1,12 @@
-﻿namespace CafeForDevs.Client
+﻿using CafeForDevs.Models;
+
+namespace CafeForDevs.Client
 {
     public interface ICafeHttpClient
     {
-        Menu GetMenu();
-        void SelectMenuItem(int menuItemId);
-        Order GetOrder();
+        MenuDto GetMenu();
+        void SelectMenuItem(int menuItemId, int quantity);
+        OrderDto GetOrder();
 
     }
 }

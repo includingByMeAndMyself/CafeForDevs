@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CafeForDevs.Models;
+using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 
 namespace CafeForDevs.Client
@@ -13,25 +15,31 @@ namespace CafeForDevs.Client
             _client.BaseAddress = baseUri;
         }
 
-        public Menu GetMenu()
+        public MenuDto GetMenu()
         {
-            var response = _client.GetAsync("");
-
-            return new Menu();
+            var response = _client.GetAsync("menu").Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+            return JsonConvert.DeserializeObject<MenuDto>(json);
         }
 
-        public void SelectMenuItem(int menuItemId)
+        public void SelectMenuItem(int menuItemId, int quantity)
         {
-            var content = menuItemId;
+            var request = new MenuItemRequestDto
+            {
+                MenuItemId = menuItemId,
+                Quantity = quantity
+            };
 
-            var response = _client.PostAsync("", content);
+            var json = JsonConvert.SerializeObject(request);
+            var content = new StringContent(json);
+            var response = _client.PostAsync("order", content).Result;
         }
 
-        public Order GetOrder()
+        public OrderDto GetOrder()
         {
-            var response = _client.GetAsync("");
-
-            return new Order();
+            var response = _client.GetAsync("order").Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+            return JsonConvert.DeserializeObject<OrderDto>(json);
         }
     }
 
